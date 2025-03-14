@@ -35,7 +35,7 @@ void print_q115(uint16_t number){
     returns: Q2.30
 */
 uint32_t Q_add(uint16_t a, uint16_t b) {
-    return (a + b)<<15;
+    return ((uint32_t)a + (uint32_t)b)<<15;
 }
 
 /*
@@ -45,7 +45,7 @@ uint32_t Q_add(uint16_t a, uint16_t b) {
     returns: Q2.30
 */
 uint32_t Q_sub(uint16_t a, uint16_t b) {
-    return (a - b)<<15;
+    return ((uint32_t)a - (uint32_t)b)<<15;
 }
 
 /*
@@ -55,7 +55,7 @@ uint32_t Q_sub(uint16_t a, uint16_t b) {
     returns: Q2.30
 */
 uint32_t Q_mul(uint16_t a, uint16_t b) {
-    return (a * b);
+    return ((uint32_t)a * (uint32_t)b);
 }
 
 /*  
