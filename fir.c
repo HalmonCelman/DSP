@@ -10,7 +10,7 @@ int16_t circural_Qbuff[NOF_SAMPLES];
 
 static void bufferStep(float new_sample){
     uint8_t sampleCtr;
-    for(sampleCtr = NOF_SAMPLES; sampleCtr > 0; sampleCtr--)
+    for(sampleCtr = NOF_SAMPLES-1; sampleCtr > 0; sampleCtr--)
         circural_buff[sampleCtr] = circural_buff[sampleCtr-1];
 
     circural_buff[0] = new_sample;
@@ -18,7 +18,7 @@ static void bufferStep(float new_sample){
 
 static void bufferQStep(int16_t new_sample){
     uint8_t sampleCtr;
-    for(sampleCtr = NOF_SAMPLES; sampleCtr > 0; sampleCtr--)
+    for(sampleCtr = NOF_SAMPLES-1; sampleCtr > 0; sampleCtr--)
         circural_Qbuff[sampleCtr] = circural_Qbuff[sampleCtr-1];
 
     circural_Qbuff[0] = new_sample;
@@ -51,26 +51,20 @@ void FIR_Init(void){
     }
 }
 
-#include <stdio.h>
 /*
     FIRQ_filter:
     Calculates one FIR output and gets one input
 */
 int16_t FIRQ_filter(int16_t data){
-    static int dupa = 0;
     int32_t Accumulator = 0;
     uint8_t sampleCtr;
 
     bufferQStep(data);
 
-    printf("\n%d:", dupa++);
-    for(sampleCtr = 0; sampleCtr < 16; sampleCtr++)
-        printf("%d ", circural_Qbuff[sampleCtr]);
-
     for(sampleCtr = 0; sampleCtr < NOF_SAMPLES; sampleCtr++)
-        Accumulator = Q_add(Accumulator , Q_mul(circural_Qbuff[sampleCtr], fir_coeff[sampleCtr]));
+        Accumulator += (int32_t)circural_Qbuff[sampleCtr] * (int32_t)firQ_coeff[sampleCtr];
 
-    return Accumulator;
+    return (int16_t)Accumulator;
 }
 
 /*
