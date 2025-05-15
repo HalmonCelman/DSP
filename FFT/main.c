@@ -11,5 +11,14 @@ int main(){
     printBits(reverseUsed(someValue));
     printf("\n");
 
+    complex data[4];
+    for(int i=0; i<8; i++){
+        data[i].imag = 0;
+        data[i].real = i+1;
+    }
+
+    FFT_init();
+    FFT_radix2(data, 4);
+
     return 0;
 }

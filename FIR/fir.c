@@ -1,5 +1,5 @@
 #include "fir.h"
-#include "q_code.h"
+#include "../Q_CODE/q_code.h"
 #define NOF_SAMPLES 16
 
 const float fir_coeff[NOF_SAMPLES]  = {0.034, 0.074, 0.0188, 0.0395, 0.0677, 0.0984, 0.1248, 0.1400, 0.1400, 0.1248, 0.0984, 0.0677, 0.0395, 0.0188, 0.074, 0.034};

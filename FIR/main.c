@@ -17,9 +17,11 @@ void main(){
         responseQ[sampleNum] = sampleNum ? FIRQ_filter(0) : FIRQ_filter(1);
     }
     // print out result
+    printf("Testing FIR library, FIR on float response to unit impulse signal:\n");
     for(sampleNum = 0; sampleNum < NUM_OF_SAMPLES; sampleNum++)
         printf("%f ", response[sampleNum]);
-    printf("\n");
+    printf("\n\nFIR on Q_CODE response to unit impulse signal:\n");
     for(sampleNum = 0; sampleNum < NUM_OF_SAMPLES; sampleNum++)
         printf("%d ", responseQ[sampleNum]);
+    printf("\n");
 }
