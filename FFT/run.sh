@@ -36,7 +36,7 @@ do
 done
 
 if [ $perform_compilation -eq 1 ]; then
-    gcc -o main main.c FFT.c -lm
+    gcc -o main main.c fft.c -lm
 fi
 
 if [ $perform_run -eq 1 ]; then
