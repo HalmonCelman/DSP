@@ -36,7 +36,7 @@ do
 done
 
 if [ $perform_compilation -eq 1 ]; then
-    gcc -o main fir.c main.c
+    gcc -o main fir.c iir.c main.c
 fi
 
 if [ $perform_run -eq 1 ]; then
